@@ -1,5 +1,9 @@
 package com.gmail.game.yadokari1130.MinecraftLogBot;
 
+import com.gmail.game.yadokari1130.MinecraftLogBot.Data.MinecraftColor;
+import com.gmail.game.yadokari1130.MinecraftLogBot.Data.Player;
+import com.gmail.game.yadokari1130.MinecraftLogBot.Data.Command;
+import com.gmail.game.yadokari1130.MinecraftLogBot.Util.Sender;
 import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
@@ -8,6 +12,7 @@ import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 
+import java.awt.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,13 +23,14 @@ import java.util.Properties;
 
 public class DiscordBot {
 
-	public static String settingChannel = "";
-	public static String textChannel = "";
-	public static String commandChannel = "";
+	public static String settingChannelId = "";
+	public static String textChannelId = "";
+	public static String commandChannelId = "";
 	public static String settingRoleId = "";
 	public static String textRoleId = "";
 	public static String commandRoleId = "";
 	public static String commandChar = "";
+	public static boolean isChangeUserColor = true;
 	public static Properties prop = new Properties();
 
 	public static void login(String token) {
@@ -41,7 +47,7 @@ public class DiscordBot {
 		gateway.on(MessageCreateEvent.class).subscribe(event -> {
 			Message message = event.getMessage();
 			MessageChannel channel = message.getChannel().block();
-			if (!settingChannel.isEmpty() && !channel.getId().asString().equals(settingChannel)) return;
+			if (!settingChannelId.isEmpty() && !channel.getId().asString().equals(settingChannelId)) return;
 
 			if (!message.getContent().startsWith(commandChar + "seticon") && !message.getContent().startsWith(commandChar + "setname") && !message.getContent().startsWith(commandChar + "getid")) return;
 			if (message.getAuthorAsMember().block() == null || message.getAuthor().get().isBot())return;
@@ -87,7 +93,7 @@ public class DiscordBot {
 
 			if (args.get(0).equals(commandChar + "setname")) {
 				if (!prop.containsKey(message.getAuthorAsMember().block().getId().asString())) {
-					channel.createMessage("アカウントがMinecraftアカウントと紐付けられていないか、入力したIDが間違っていた場合があります`" + commandChar + "getid`を実行してください").withMessageReference(message.getId()).block();
+					channel.createMessage("アカウントがMinecraftアカウントと紐付けられていないか、入力したIDが間違っていた場合があります\n`" + commandChar + "getid`を実行してください").withMessageReference(message.getId()).block();
 					return;
 				}
 				String name = message.getContent().length() > (8 + commandChar.length()) ? message.getContent().substring(8 + commandChar.length()) : "";
@@ -108,7 +114,7 @@ public class DiscordBot {
 		gateway.on(MessageCreateEvent.class).subscribe(event -> {
 			Message message = event.getMessage();
 			MessageChannel channel = message.getChannel().block();
-			if (!commandChannel.isEmpty() && !channel.getId().asString().equals(commandChannel)) return;
+			if (!commandChannelId.isEmpty() && !channel.getId().asString().equals(commandChannelId)) return;
 
 			if (!message.getContent().startsWith(commandChar) || message.getContent().startsWith(commandChar + "seticon") || message.getContent().startsWith(commandChar + "setname") || message.getContent().startsWith(commandChar + "getid")) return;
 			if (message.getAuthorAsMember().block() == null || message.getAuthor().get().isBot())return;
@@ -127,11 +133,11 @@ public class DiscordBot {
 				return;
 			}
 
-			String result = "";
+			String result;
 			if (command.equals("mccommand")) {
 				StringBuilder sb = new StringBuilder();
 				args.forEach(a -> sb.append(a).append(" "));
-				result = MinecraftRcon.sendCommand(sb.toString());
+				result = Sender.sendCommandToMinecraft(sb.toString());
 			}
 			else result = Command.exec(command, args);
 
@@ -141,7 +147,7 @@ public class DiscordBot {
 		gateway.on(MessageCreateEvent.class).subscribe(event -> {
 			Message message = event.getMessage();
 			MessageChannel channel = message.getChannel().block();
-			if (!textChannel.isEmpty() && !channel.getId().asString().equals(textChannel)) return;
+			if (!textChannelId.isEmpty() && !channel.getId().asString().equals(textChannelId)) return;
 
 			if (message.getContent().startsWith(commandChar)) return;
 			if (message.getAuthorAsMember().block() == null || message.getAuthor().get().isBot())return;
@@ -154,8 +160,12 @@ public class DiscordBot {
 			}
 
 			if (!MinecraftRcon.isConnected) return;
-			com.gmail.game.yadokari1130.MinecraftLogBot.Message sendMessage = new com.gmail.game.yadokari1130.MinecraftLogBot.Message(message.getAuthorAsMember().block().getNickname().orElse(message.getAuthorAsMember().block().getDisplayName()), "", message.getContent());
-			MinecraftRcon.sendMessage(sendMessage);
+			com.gmail.game.yadokari1130.MinecraftLogBot.Data.Message sendMessage = new com.gmail.game.yadokari1130.MinecraftLogBot.Data.Message(message.getAuthorAsMember().block().getNickname().orElse(message.getAuthorAsMember().block().getDisplayName()), "", message.getContent());
+            if (isChangeUserColor) {
+				MinecraftColor nearestColor = MinecraftColor.getNearestColor(new Color(message.getAuthorAsMember().block().getColor().block().getRGB()));
+				sendMessage.setPlayerColor(nearestColor);
+			}
+            Sender.sendMessageToMinecraft(sendMessage);
 		});
 	}
 }

@@ -1,4 +1,4 @@
-package com.gmail.game.yadokari1130.MinecraftLogBot;
+package com.gmail.game.yadokari1130.MinecraftLogBot.Data;
 
 import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
@@ -22,8 +22,8 @@ public class Player {
 	public Player(String name) {
 		this.name = name;
 		this.uuid = getUuid(name);
-		if (avatarProp.containsKey(uuid)) avatarUrl = avatarProp.getProperty(uuid);
-		else avatarUrl = "";
+		if (avatarProp.containsKey(uuid) && !avatarProp.get(uuid).toString().isEmpty()) avatarUrl = avatarProp.getProperty(uuid);
+		else avatarUrl = "https://mc-heads.net/avatar/" + uuid + "/128/";
 		if (nameProp.containsKey(uuid)) nickName = nameProp.getProperty(uuid);
 		else nickName = "";
 	}

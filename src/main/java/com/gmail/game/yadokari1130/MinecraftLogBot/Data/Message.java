@@ -1,4 +1,4 @@
-package com.gmail.game.yadokari1130.MinecraftLogBot;
+package com.gmail.game.yadokari1130.MinecraftLogBot.Data;
 
 import com.google.gson.Gson;
 
@@ -8,9 +8,11 @@ import java.util.Map;
 public class Message {
 	Map<String, Object> datas = new HashMap<>();
 	private final String json;
+	private MinecraftColor playerColor;
 	public int count = 0;
 	public static String systemName = "";
 	public static String systemAvatarUrl = "";
+
 
 	public Message(String name, String avatarUrl, String text) {
 		datas.put("username", name);
@@ -41,5 +43,13 @@ public class Message {
 
 	public String getText() {
 		return datas.get("content").toString();
+	}
+
+	public MinecraftColor getPlayerColor() {
+		return playerColor;
+	}
+
+	public void setPlayerColor(MinecraftColor playerColor) {
+		this.playerColor = playerColor;
 	}
 }

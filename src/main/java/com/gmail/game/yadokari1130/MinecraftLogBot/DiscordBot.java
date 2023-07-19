@@ -88,7 +88,7 @@ public class DiscordBot {
 					e1.printStackTrace();
 				}
 
-				channel.createMessage(Player.getName(uuid) + " さんのアイコンを設定しました\n" + (url.isEmpty() ? "アイコンなし" : url)).withMessageReference(message.getId()).block();
+				channel.createMessage(Player.getName(uuid) + " さんのアイコンを設定しました\n" + (url.startsWith("https://cdn.discordapp.com/attachments/") ? "返信元のメッセージを削除すると画像がリンク切れになるため削除しないようにしてください\n" : "") + (url.isEmpty() ? "アイコンなし" : url)).withMessageReference(message.getId()).block();
 			}
 
 			if (args.get(0).equals(commandChar + "setname")) {

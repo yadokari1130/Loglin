@@ -274,7 +274,7 @@ public class MinecraftLogBot {
 	public static void checkUpdate() {
 		String update = null;
 		try {
-			update = IOUtils.toString(new URL("https://raw.githubusercontent.com/yadokari1130/yadokaris-Status-HUD-Plus/master/changelog.json"), StandardCharsets.UTF_8);
+			update = IOUtils.toString(new URL("https://raw.githubusercontent.com/yadokari1130/Loglin/master/changelog.json"), StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

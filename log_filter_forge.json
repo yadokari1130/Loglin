@@ -1,0 +1,355 @@
+[
+  {
+    "comment": "ID設定用コマンド",
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: \\<(?<player>.*)\\> !setid (?<arg0>.*)",
+    "commands": [
+      "LoginUtil.setId"
+    ],
+    "argCount": 1,
+    "isPlayerLog": true,
+    "isReturnOutputs": [
+      false
+    ],
+    "isReturnErrors": [
+      false
+    ]
+  },
+  {
+    "comment": "プレイヤーが送ったチャット",
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: \\<(?<player>.*)\\> (.*)",
+    "isPlayerLog": true
+  },
+  {
+    "comment": "サーバー参加ログ",
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: ((?<arg0>[^\\s]*).*joined the game)",
+    "argCount": 1,
+    "commands": [
+      "LoginUtil.insertLoginRecord"
+    ],
+    "isReturnOutputs": [
+      false,
+      false
+    ],
+    "isReturnErrors": [
+      false,
+      false
+    ]
+  },
+  {
+    "comment": "サーバー退出ログ",
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* left the game)"
+  },
+  {
+    "comment": "サーバー開始ログ",
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (Starting minecraft server version .*)"
+  },
+  {
+    "comment": "サーバー起動ログ",
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (Done \\(.*\\)! For help, type \"help\" or \"\\?\")"
+  },
+  {
+    "comment": "サーバー終了ログ",
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (Stopping server)"
+  },
+  {
+    "comment": "実績解除ログ",
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* has made the advancement \\[.*\\])"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was squashed by a falling anvil)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was squashed by a falling anvil whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was shot by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was shot by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (Intentional Game Design)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was pricked to death)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* walked into a cactus whilst trying to escape .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was squished too much)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was squashed by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was roasted in dragon's breath)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was roasted in dragon's breath by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* drowned)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* drowned whilst trying to escape .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* died from dehydration)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* died from dehydration whilst trying to escape .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed by even more magic)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* blew up)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was blown up by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was blown up by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* hit the ground too hard)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* hit the ground too hard whilst trying to escape .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was squashed by a falling block)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was squashed by a falling block whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was skewered by a falling stalactite)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was skewered by a falling stalactite whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was fireballed by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was fireballed by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* went off with a bang)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* went off with a bang due to a firework fired from .* by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* went off with a bang whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* experienced kinetic energy)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* experienced kinetic energy whilst trying to escape .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* froze to death)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was frozen to death by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* died)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* died because of .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* discovered the floor was lava)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* walked into the danger zone due to .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed by .* using magic)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* went up in flames)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* walked into fire whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* suffocated in a wall)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* suffocated in a wall whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* tried to swim in lava)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* tried to swim in lava to escape .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was struck by lightning)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was struck by lightning whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed by magic)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed by magic whilst trying to escape .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (Actually, the message was too long to deliver fully. Sorry! Here's stripped version: .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was slain by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was slain by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* burned to death)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was burnt to a crisp whilst fighting .* wielding .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was burnt to a crisp whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* left the confines of this world)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* left the confines of this world whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell out of the world)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* didn't want to live in the same world as .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was slain by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was slain by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was obliterated by a sonically-charged shriek)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was obliterated by a sonically-charged shriek whilst trying to escape .* wielding .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was obliterated by a sonically-charged shriek whilst trying to escape .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was impaled on a stalagmite)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was impaled on a stalagmite whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* starved to death)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* starved to death whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was stung to death)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was stung to death by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was stung to death by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was poked to death by a sweet berry bush)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was poked to death by a sweet berry bush whilst trying to escape .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed trying to hurt .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was killed by .* trying to hurt .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was pummeled by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was pummeled by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was impaled by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was impaled by .* with .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* withered away)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* withered away whilst fighting .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was shot by a skull from .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was shot by a skull from .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell from a high place)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell off a ladder)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell while climbing)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell off scaffolding)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell off some twisting vines)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell off some vines)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell off some weeping vines)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was doomed to fall by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was doomed to fall by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell too far and was finished by .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* fell too far and was finished by .* using .*)"
+  },
+  {
+    "regex": "\\[.*\\] \\[Server thread/INFO\\] \\[net.minecraft.server.dedicated.DedicatedServer\\]: (.* was doomed to fall)"
+  }
+]

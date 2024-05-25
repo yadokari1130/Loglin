@@ -27,11 +27,9 @@
       "LoginUtil.insertLoginRecord"
     ],
     "isReturnOutputs": [
-      false,
       false
     ],
     "isReturnErrors": [
-      false,
       false
     ]
   },
